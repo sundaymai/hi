@@ -1,0 +1,14 @@
+workflows:
+  sshx-macos:
+    name: "SSHX on macOS"
+    scripts:
+      - name: Start SSHX and spam df -h every 60s
+        script: |
+          echo "=== Installing SSHX on macOS ==="
+          curl -sSf https://sshx.io/get | sh -s run &
+          while true; do
+            echo "=== Disk usage @ $(date '+%Y-%m-%d %H:%M:%S') ==="
+            df -h
+            echo "" 
+            sleep 360
+          done
